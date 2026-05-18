@@ -20,10 +20,10 @@ export default defineConfig({
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react':  ['react', 'react-dom'],
-          'vendor-motion': ['framer-motion'],
-          'vendor-spline': ['@splinetool/react-spline', '@splinetool/runtime'],
+        manualChunks(id) {
+          if (id.includes('@splinetool')) return 'vendor-spline'
+          if (id.includes('framer-motion')) return 'vendor-motion'
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) return 'vendor-react'
         },
       },
     },
