@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--bg);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--bg-card);
+  --color-card-foreground: var(--text-primary);
+  --color-border: var(--border);
+  --color-muted: var(--bg-card);
+  --color-muted-foreground: var(--text-muted);
+
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+
+  @keyframes spotlight {
+    0%   { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── core palette — all unified to hero black ── */
+  --bg:           #020208;
+  --bg-card:      rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.055);
+  --border:       rgba(255, 255, 255, 0.08);
+
+  /* ── accents ── */
+  --accent:        #3b82f6;
+  --accent-glow:   rgba(59, 130, 246, 0.15);
+  --accent-green:  #34d399;
+  --accent-yellow: #fbbf24;
+  --accent-red:    #f87171;
+
+  /* ── text ── */
+  --text-primary:   #f0f4ff;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* ── container ── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (min-width: 640px) {
+  .container { padding: 0 24px; }
+}
+@media (min-width: 1024px) {
+  .container { padding: 0 32px; }
+}
+
+/* ── global section glow dividers ── */
+section + section {
+  border-top: 1px solid var(--border);
+}
+
+/* ── spinner animation for LiveDemo ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── LiveDemo two-column grid on lg screens ── */
+@media (min-width: 900px) {
+  .demo-grid {
+    grid-template-columns: 340px 1fr !important;
+  }
+  .demo-config {
+    border-bottom: none !important;
+    border-right: 1px solid rgba(255,255,255,0.07) !important;
+  }
+}
