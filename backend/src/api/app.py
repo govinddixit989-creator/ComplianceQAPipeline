@@ -15,19 +15,11 @@ from ..checkers import ComplianceChecker
 
 app = FastAPI(title="Compliance QA API", version="1.0.0")
 
-_raw_origins = os.environ.get(
-    "ALLOWED_ORIGINS",
-    "http://localhost:5173,http://localhost:4173,http://localhost:3000",
-)
-_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_origins,
-    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
-    allow_credentials=True,
 )
 
 # lazy-initialised so the server starts even without env vars set
